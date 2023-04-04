@@ -16,6 +16,7 @@ import java.io.PrintWriter;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -23,7 +24,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @RequestMapping("/products")
 public class ProductController {
 
-    private List<Product> products;
+    private List<Product> products=new ArrayList<Product>();
 
     @GetMapping("/getall")
     public List<Product> getall(){

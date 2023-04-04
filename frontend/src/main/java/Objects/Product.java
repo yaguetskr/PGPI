@@ -1,4 +1,4 @@
-package com.rest.frontend;
+package Objects;
 
 public class Product {
 

@@ -1,5 +1,6 @@
 package com.rest.frontend;
 
+import Objects.Usuario;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -10,9 +11,11 @@ import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
+import com.vaadin.flow.server.VaadinSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -33,14 +36,24 @@ public class MainView extends AppLayout {
 
 
     private final RouterLink tab1;
+    private final RouterLink tab2;
 
+    private final RouterLink tab3;
+    private  ListItem itemadmin;
 
     public MainView() {
 
         H1 title=new H1("Inicio");
+        
+        
         this.tab1=new RouterLink("Productos",ProductsView.class);
+        this.tab2=new RouterLink("Login",LoginView.class);
+        this.tab3=new RouterLink("Admin",LoginView.class);
+        itemadmin=new ListItem(tab3);
 
-        final UnorderedList list = new UnorderedList(new ListItem(tab1));
+        visibilizar();
+
+        final UnorderedList list = new UnorderedList(new ListItem(tab1),new ListItem(tab2),itemadmin);
         final Nav navigation = new Nav(list);
         addToDrawer(navigation);
         setPrimarySection(Section.DRAWER);
@@ -59,8 +72,21 @@ public class MainView extends AppLayout {
     }
 
     private RouterLink[] getRouterLinks() {
-        return new RouterLink[] {tab1};
+        return new RouterLink[] {tab1,tab2,tab3};
     }
+    public void visibilizar() {
 
+        if( ((Usuario) VaadinSession.getCurrent().getAttribute("user"))==null) {
+            itemadmin.setVisible(false);
+
+
+        }else if( ((Usuario) VaadinSession.getCurrent().getAttribute("user")).getRol().equals("ADMIN")){
+            itemadmin.setVisible(true);
+
+        }else{
+            itemadmin.setVisible(false);
+
+        }
+    }
 
 }

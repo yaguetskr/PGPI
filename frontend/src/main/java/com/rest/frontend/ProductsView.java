@@ -1,11 +1,12 @@
 package com.rest.frontend;
 
 
+import Objects.API;
+import Objects.Product;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.vaadin.flow.component.button.Button;
 
-import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H3;
@@ -17,11 +18,8 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.net.URISyntaxException;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +42,9 @@ public class ProductsView extends VerticalLayout {
 
         Gson gson = new Gson();
 
-        List<Product> lista = gson.fromJson(listajson,new TypeToken<List<Product>>(){}.getType());
+        Type productListType = new TypeToken<List<Product>>(){}.getType();
+        List<Product> lista = gson.fromJson(listajson, productListType);
+        //List<Product> lista = gson.fromJson(listajson,new TypeToken<List<Product>>(){}.getType());
 
         Grid<Product> tabla=new Grid<>();
         Grid.Column<Product> namecol =tabla.addColumn(Product::getName).setHeader("Product name:");
