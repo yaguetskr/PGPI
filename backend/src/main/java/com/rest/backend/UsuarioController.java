@@ -22,6 +22,24 @@ import java.util.List;
 public class UsuarioController {
     private List<Usuario> users=new ArrayList<Usuario>();
 
+    @GetMapping("/delete")
+    public void delete(@RequestParam(value = "id",defaultValue = "-1")int id) throws FileNotFoundException {
+
+        this.loadjson();
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId() == (id)) {
+                users.remove(i);
+                this.savejson();
+            }
+        }
+    }
+
+    @GetMapping("/getall")
+    public List<Usuario> getall(){
+        this.loadjson();
+        return users;
+    }
+
     @GetMapping("/get")
     public Usuario get(@RequestParam(value = "username",defaultValue = "-1")String nombre){
         this.loadjson();
@@ -42,11 +60,11 @@ public class UsuarioController {
     }
 
     @GetMapping("/create")
-    public void create(@RequestParam String username,@RequestParam String pwd) throws FileNotFoundException {
+    public void create(@RequestParam String username,@RequestParam String pwd,@RequestParam String rol) throws FileNotFoundException {
         this.loadjson();
         int tempid=0;
 
-        users.add(new Usuario(username,pwd,"ADMIN"));
+        users.add(new Usuario(username,pwd,rol,users.size()+1));
 
         this.savejson();
 

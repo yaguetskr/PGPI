@@ -51,7 +51,7 @@ public class LoginView extends VerticalLayout{
                         if(api.buscarusuario(regname.getValue()) == null) {
                             if(regpassword.getValue().length()>7) {
                                 try {
-                                    api.crearusuario(regname.getValue(), regpassword.getValue());
+                                    api.crearusuario(regname.getValue(), regpassword.getValue(),"Cliente");
                                     Notification.show("Usuario creado con exito");
                                 } catch (Exception e) {
                                     // TODO Auto-generated catch block

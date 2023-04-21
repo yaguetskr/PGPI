@@ -6,10 +6,17 @@ public class Usuario {
     String pwd;
     String rol;
 
-    public Usuario(String username, String pwd, String rol) {
+    int id;
+
+    public Usuario(String username, String pwd, String rol,int id) {
         this.username = username;
         this.pwd = pwd;
         this.rol = rol;
+        this.id=id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getUsername() {

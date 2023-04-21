@@ -48,7 +48,7 @@ public class MainView extends AppLayout {
         
         this.tab1=new RouterLink("Productos",ProductsView.class);
         this.tab2=new RouterLink("Login",LoginView.class);
-        this.tab3=new RouterLink("Admin",LoginView.class);
+        this.tab3=new RouterLink("Admin",AdminView.class);
         itemadmin=new ListItem(tab3);
 
         visibilizar();
