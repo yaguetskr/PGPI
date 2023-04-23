@@ -59,13 +59,13 @@ public class AdminView extends VerticalLayout {
         columnLayout1.add(enlace,enlace2,enlace3);
 
 
-
-        Button pickingbt = new Button("Picking en tiempo real");
-        pickingbt.addClickListener(e -> {
-            UI.getCurrent().navigate("pickingtr");
+        Button usuariosbt = new Button("Gestionar usuarios");
+        usuariosbt.addClickListener(e -> {
+            UI.getCurrent().navigate("usuarios");
         });
 
-        RouterLink enlace4 = new RouterLink("Picking en tiempo real", PickingtrView.class);
+        RouterLink enlace4 = new RouterLink("Gestionar usuarios", UsuariosView.class);
+
 
 
 
@@ -90,13 +90,7 @@ public class AdminView extends VerticalLayout {
 
         columnLayout2.add(enlace4,enlace5,enlace6);
 
-        Button usuariosbt = new Button("Gestionar usuarios");
-        analysisbt.addClickListener(e -> {
-            UI.getCurrent().navigate("usuarios");
-        });
 
-        RouterLink enlace7 = new RouterLink("Gestionar usuarios", UsuariosView.class);
-        columnLayout3.add(enlace7);
     }
 
 }

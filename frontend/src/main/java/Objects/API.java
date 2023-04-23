@@ -50,6 +50,17 @@ public class API {
 
 
     }
+
+    public void edituser(String id, String username, String pwd, String rol) throws URISyntaxException, IOException, InterruptedException {
+
+        String fullUrl=String.format(backendUrlPrefix,"/users/edit?id="+(id)+"&username="+(username)+"&pwd="+(pwd)+"&rol="+rol);
+        fullUrl = fullUrl.replaceAll(" " ,"%20");
+        HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
+        HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
+
+
+    }
+
     public String getallusers() throws URISyntaxException, IOException, InterruptedException {
         String fullUrl=String.format(backendUrlPrefix,"/users/getall");
         fullUrl = fullUrl.replaceAll(" " ,"%20");
@@ -64,23 +75,123 @@ public class API {
         fullUrl = fullUrl.replaceAll(" " ,"%20");
         HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
         HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
+        
         return response.body();
 
     }
 
-    public String getproduct(int id) throws URISyntaxException, IOException, InterruptedException {
+    public String getproduct(String id) throws URISyntaxException, IOException, InterruptedException {
 
-        String fullUrl=String.format(backendUrlPrefix,"/products/get?id="+Integer.toString(id));
+        String fullUrl=String.format(backendUrlPrefix,"/products/get?id="+id);
         fullUrl = fullUrl.replaceAll(" " ,"%20");
         HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
         HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
+        
         return response.body();
 
     }
 
-    public void editproduct(String id, String stock, String price, String name) throws URISyntaxException, IOException, InterruptedException {
+    public void editproduct(String id, String stock, String price, String name,String proveedor,String ubicacion, String umbral) throws URISyntaxException, IOException, InterruptedException {
 
-        String fullUrl=String.format(backendUrlPrefix,"/products/edit?id="+(id)+"&stock="+(stock)+"&price="+(price)+"&name="+name);
+        String fullUrl=String.format(backendUrlPrefix,"/products/edit?id="+(id)+"&stock="+(stock)+"&price="+(price)+"&name="+name+"&proveedor="+proveedor+"&ubicacion="+ubicacion+"&umbral="+umbral);
+        fullUrl = fullUrl.replaceAll(" " ,"%20");
+        HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
+        HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
+        
+
+    }
+
+    public void createproduct(String id,String stock, String price, String name,String proveedor,String ubicacion, String umbral) throws URISyntaxException, IOException, InterruptedException {
+
+        String fullUrl=String.format(backendUrlPrefix,"/products/create?id="+id+"&stock="+stock+"&price="+price+"&name="+name+"&proveedor="+proveedor+"&ubicacion="+ubicacion+"&umbral="+umbral);
+        fullUrl = fullUrl.replaceAll(" " ,"%20");
+        HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
+        HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
+        
+
+    }
+
+    public void deleteproduct(String id) throws URISyntaxException, IOException, InterruptedException {
+
+        String fullUrl=String.format(backendUrlPrefix,"/products/delete?id="+id);
+        fullUrl = fullUrl.replaceAll(" " ,"%20");
+        HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
+        HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
+        
+
+    }
+
+
+    //
+    public String getallpedidoscliente() throws URISyntaxException, IOException, InterruptedException {
+        String fullUrl=String.format(backendUrlPrefix,"/pedidoclientes/getall");
+        fullUrl = fullUrl.replaceAll(" " ,"%20");
+        HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
+        HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
+        
+        return response.body();
+
+    }
+
+    public String getpedidoclientes(String id) throws URISyntaxException, IOException, InterruptedException {
+
+        String fullUrl=String.format(backendUrlPrefix,"/pedidoclientes/get?id="+id);
+        fullUrl = fullUrl.replaceAll(" " ,"%20");
+        HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
+        HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
+        
+        return response.body();
+
+    }
+
+
+
+    public void deletepedidoclientes(String id) throws URISyntaxException, IOException, InterruptedException {
+
+        String fullUrl=String.format(backendUrlPrefix,"/pedidoclientes/delete?id="+id);
+        fullUrl = fullUrl.replaceAll(" " ,"%20");
+        HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
+        HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
+        
+
+    }
+
+    public String getalllistaspicking() throws URISyntaxException, IOException, InterruptedException {
+        String fullUrl=String.format(backendUrlPrefix,"/listaspicking/getall");
+        fullUrl = fullUrl.replaceAll(" " ,"%20");
+        HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
+        HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
+
+        return response.body();
+
+    }
+
+    public String getalllistaspickingpendientes() throws URISyntaxException, IOException, InterruptedException {
+        String fullUrl=String.format(backendUrlPrefix,"/listaspicking/getpendientes");
+        fullUrl = fullUrl.replaceAll(" " ,"%20");
+        HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
+        HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
+
+        return response.body();
+
+    }
+
+    public String getlistapicking(String id) throws URISyntaxException, IOException, InterruptedException {
+
+        String fullUrl=String.format(backendUrlPrefix,"/listaspicking/get?id="+id);
+        fullUrl = fullUrl.replaceAll(" " ,"%20");
+        HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
+        HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
+
+        return response.body();
+
+    }
+
+
+
+    public void deletepelistapickings(String id) throws URISyntaxException, IOException, InterruptedException {
+
+        String fullUrl=String.format(backendUrlPrefix,"/listaspicking/delete?id="+id);
         fullUrl = fullUrl.replaceAll(" " ,"%20");
         HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
         HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
@@ -88,9 +199,30 @@ public class API {
 
     }
 
-    public void createproduct(String stock, String price, String name) throws URISyntaxException, IOException, InterruptedException {
+    public String getallpedidosprov() throws URISyntaxException, IOException, InterruptedException {
+        String fullUrl=String.format(backendUrlPrefix,"/pedidosprov/getall");
+        fullUrl = fullUrl.replaceAll(" " ,"%20");
+        HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
+        HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
 
-        String fullUrl=String.format(backendUrlPrefix,"/products/create?stock="+stock+"&price="+price+"&name="+name);
+        return response.body();
+
+    }
+
+    public String getpedidoprov(String id) throws URISyntaxException, IOException, InterruptedException {
+
+        String fullUrl=String.format(backendUrlPrefix,"/pedidosprov/get?id="+id);
+        fullUrl = fullUrl.replaceAll(" " ,"%20");
+        HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
+        HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
+
+        return response.body();
+
+    }
+
+    public void createpedidoprov(String idproduct,String proveedor, String cantidad) throws URISyntaxException, IOException, InterruptedException {
+
+        String fullUrl=String.format(backendUrlPrefix,"/pedidosprov/create?idproducto="+idproduct+"&proveedor="+proveedor+"&cantidad="+cantidad);
         fullUrl = fullUrl.replaceAll(" " ,"%20");
         HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
         HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
@@ -98,15 +230,16 @@ public class API {
 
     }
 
-    public void deleteproduct(int id) throws URISyntaxException, IOException, InterruptedException {
+    public void deletepedidoprov(String id) throws URISyntaxException, IOException, InterruptedException {
 
-        String fullUrl=String.format(backendUrlPrefix,"/products/delete?id="+Integer.toString(id));
+        String fullUrl=String.format(backendUrlPrefix,"/pedidosprov/delete?id="+id);
         fullUrl = fullUrl.replaceAll(" " ,"%20");
         HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
         HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
 
 
     }
+
 
 
 }

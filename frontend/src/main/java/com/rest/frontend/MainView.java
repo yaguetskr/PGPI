@@ -1,6 +1,7 @@
 package com.rest.frontend;
 
 import Objects.Usuario;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -35,7 +36,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class MainView extends AppLayout {
 
 
-    private final RouterLink tab1;
+
     private final RouterLink tab2;
 
     private final RouterLink tab3;
@@ -45,15 +46,14 @@ public class MainView extends AppLayout {
 
         H1 title=new H1("Inicio");
         
-        
-        this.tab1=new RouterLink("Productos",ProductsView.class);
+
         this.tab2=new RouterLink("Login",LoginView.class);
         this.tab3=new RouterLink("Admin",AdminView.class);
         itemadmin=new ListItem(tab3);
 
         visibilizar();
 
-        final UnorderedList list = new UnorderedList(new ListItem(tab1),new ListItem(tab2),itemadmin);
+        final UnorderedList list = new UnorderedList(new ListItem(tab2),itemadmin);
         final Nav navigation = new Nav(list);
         addToDrawer(navigation);
         setPrimarySection(Section.DRAWER);
@@ -71,8 +71,9 @@ public class MainView extends AppLayout {
 
     }
 
+
     private RouterLink[] getRouterLinks() {
-        return new RouterLink[] {tab1,tab2,tab3};
+        return new RouterLink[] {tab2,tab3};
     }
     public void visibilizar() {
 

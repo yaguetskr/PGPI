@@ -69,10 +69,15 @@ public class UsuariosView extends VerticalLayout {
                 VerticalLayout layoutdialog= new VerticalLayout();
                 layoutdialog.add(new H3("Editar the Usuario "+(optional.get().getId() ) +":"));
 
-                layoutdialog.add("Name:");
-                TextField nametf= new TextField();
-                nametf.setValue(optional.get().getUsername());
-                layoutdialog.add(nametf);
+                layoutdialog.add("Nombre de usuario:");
+                TextField usernameedit= new TextField();
+                usernameedit.setValue(optional.get().getUsername());
+                layoutdialog.add(usernameedit);
+
+                layoutdialog.add("Nueva contraseña:");
+                TextField pwdedit= new TextField();
+                pwdedit.setValue(optional.get().getPwd());
+                layoutdialog.add(pwdedit);
 
                 layoutdialog.add("Rol:");
                 Select<String> roldd = new Select<>();
@@ -90,7 +95,7 @@ public class UsuariosView extends VerticalLayout {
 
                     String temp;
                     try {
-                        //api.editUsuario(Integer.toString(optional.get().getId()),stocktf.getValue(),pricetf.getValue(),nametf.getValue());
+                        api.edituser(Integer.toString(optional.get().getId()),usernameedit.getValue(),pwdedit.getValue(),roldd.getValue());
                         temp = api.getallusers();
                         Notification.show("Edited succesfully");
                         List<Usuario> templist = gson.fromJson(temp,new TypeToken<List<Usuario>>(){}.getType());

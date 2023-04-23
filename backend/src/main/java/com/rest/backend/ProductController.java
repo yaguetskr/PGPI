@@ -33,7 +33,7 @@ public class ProductController {
     }
 
     @GetMapping("/get")
-    public Product get(@RequestParam(value = "id",defaultValue = "-1")int id){
+    public Product get(@RequestParam(value = "id",defaultValue = "-1")String id){
         this.loadjson();
 
         for (Product prod : products){
@@ -48,28 +48,25 @@ public class ProductController {
     }
 
     @GetMapping("/edit")
-    public void edit(@RequestParam int id,@RequestParam int stock,@RequestParam float price,@RequestParam String name) throws FileNotFoundException {
+    public Product edit(@RequestParam String id,@RequestParam int stock,@RequestParam float price,@RequestParam String name,@RequestParam String proveedor,@RequestParam String ubicacion,@RequestParam String umbral) throws FileNotFoundException {
         this.loadjson();
         for (int i = 0; i < products.size(); i++){
-            if(products.get(i).getId()==(id)){
-                products.set(i,new Product(id,stock,price,name));
+            if(products.get(i).getId().equals(id)){
+                products.set(i,new Product(id,stock,price,name,proveedor,ubicacion,umbral));
                 this.savejson();
             }
 
         }
+        return new Product(id,stock,price,name,proveedor,ubicacion,umbral);
 
 
     }
 
     @GetMapping("/create")
-    public void create(@RequestParam int stock,@RequestParam float price,@RequestParam String name) throws FileNotFoundException {
+    public void create(@RequestParam String id,@RequestParam int stock,@RequestParam float price,@RequestParam String name,@RequestParam String proveedor,@RequestParam String ubicacion,@RequestParam String umbral) throws FileNotFoundException {
         this.loadjson();
-        int tempid=0;
-        if(products.size()>0){
-            tempid=products.get(products.size() - 1).getId()+1;
-        }
 
-        products.add(new Product(tempid,stock,price,name));
+        products.add(new Product(id,stock,price,name,proveedor,ubicacion,umbral));
         this.savejson();
 
 
@@ -77,11 +74,11 @@ public class ProductController {
 
 
     @GetMapping("/delete")
-    public void delete(@RequestParam(value = "id",defaultValue = "-1")int id) throws FileNotFoundException {
+    public void delete(@RequestParam(value = "id",defaultValue = "-1")String id) throws FileNotFoundException {
 
         this.loadjson();
         for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getId() == (id)) {
+            if (products.get(i).getId().equals(id)) {
                 products.remove(i);
                 this.savejson();
             }

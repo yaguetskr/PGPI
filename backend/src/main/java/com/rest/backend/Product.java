@@ -2,23 +2,33 @@ package com.rest.backend;
 
 public class Product {
 
-    int id;
+    String id;
     int stock;
     float price;
     String name;
 
-    public Product(int id, int stock, float price, String name) {
+    String proveedor;
+
+    String ubicacion;
+
+    String umbral;
+
+    public Product(String id, int stock, float price, String name, String proveedor, String ubicacion, String umbral) {
         this.id = id;
         this.stock = stock;
         this.price = price;
         this.name = name;
+        this.proveedor = proveedor;
+        this.ubicacion = ubicacion;
+        this.umbral = umbral;
+
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -45,4 +55,29 @@ public class Product {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(String proveedor) {
+        this.proveedor = proveedor;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public String getUmbral() {
+        return umbral;
+    }
+
+    public void setUmbral(String umbral) {
+        this.umbral = umbral;
+    }
 }
+

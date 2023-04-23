@@ -64,9 +64,24 @@ public class UsuarioController {
         this.loadjson();
         int tempid=0;
 
-        users.add(new Usuario(username,pwd,rol,users.size()+1));
+        users.add(new Usuario(users.size(),username,pwd,rol));
 
         this.savejson();
+
+
+    }
+
+    @GetMapping("/edit")
+    public void edit(@RequestParam int id,@RequestParam String username,@RequestParam String pwd,@RequestParam String rol) throws FileNotFoundException {
+        this.loadjson();
+        for (int i = 0; i < users.size(); i++){
+            if(users.get(i).getId()==(id)){
+                users.set(i,new Usuario(id,username,pwd,rol));
+                this.savejson();
+            }
+
+        }
+
 
 
     }
@@ -84,8 +99,7 @@ public class UsuarioController {
         }
 
 
-
-        this.users=gson.fromJson(reader,new TypeToken<List<Usuario>>(){}.getType());
+        this.users = gson.fromJson(reader, new TypeToken<List<Usuario>>() {}.getType());
 
 
 
