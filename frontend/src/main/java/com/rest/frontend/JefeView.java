@@ -1,32 +1,18 @@
 package com.rest.frontend;
 
 import Objects.API;
-import Objects.Usuario;
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.dialog.Dialog;
-import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.PasswordField;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
-import com.vaadin.flow.server.VaadinSession;
-import com.vaadin.flow.theme.Theme;
-import com.vaadin.flow.theme.lumo.Lumo;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
 
 
-@Route(value = "admin",layout=MainView.class)
-public class AdminView extends VerticalLayout {
+@Route(value = "jefe",layout=MainView.class)
+public class JefeView extends VerticalLayout{
 
-
-    public AdminView() throws Exception {
+    public JefeView() throws Exception {
         API api = new API();
 
         HorizontalLayout topMenu = new HorizontalLayout();
@@ -46,8 +32,7 @@ public class AdminView extends VerticalLayout {
         Button clientesBtn = new Button("Pedidos de clientes");
         clientesBtn.addClickListener(e -> UI.getCurrent().navigate("clientes"));
 
-        Button usuariosBtn = new Button("Gestionar usuarios");
-        usuariosBtn.addClickListener(e -> UI.getCurrent().navigate("usuarios"));
+
 
         Button pickingListBtn = new Button("Listas de picking");
         pickingListBtn.addClickListener(e -> UI.getCurrent().navigate("pickinglist"));
@@ -63,7 +48,7 @@ public class AdminView extends VerticalLayout {
                 new RouterLink(importarBtn.getText(), VistaCargarArchivo.class),
                 new RouterLink(proveedoresBtn.getText(), PedidosprovView.class),
                 new RouterLink(clientesBtn.getText(), PedidosclienteView.class),
-                new RouterLink(usuariosBtn.getText(), UsuariosView.class),
+
                 new RouterLink(pickingListBtn.getText(), PickingListView.class),
                 new RouterLink(pickingspendientesBtn.getText(), PickingspendientesView.class),
                 new RouterLink(analyticsBtn.getText(), AnalyticsView.class)
@@ -74,7 +59,7 @@ public class AdminView extends VerticalLayout {
         configureButton(importarBtn);
         configureButton(proveedoresBtn);
         configureButton(clientesBtn);
-        configureButton(usuariosBtn);
+
         configureButton(pickingListBtn);
         configureButton(analyticsBtn);
     }
@@ -83,5 +68,4 @@ public class AdminView extends VerticalLayout {
         button.setWidthFull();
         button.getStyle().set("margin-right", "5px");
     }
-
 }

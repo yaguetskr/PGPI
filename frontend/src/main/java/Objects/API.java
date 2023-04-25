@@ -107,7 +107,7 @@ public class API {
         fullUrl = fullUrl.replaceAll(" " ,"%20");
         HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
         HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
-        
+        System.out.println(fullUrl);
 
     }
 

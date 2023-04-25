@@ -2,16 +2,28 @@ package com.rest.frontend;
 
 import Objects.API;
 import Objects.Pedidocliente;
+import Objects.Pickinglist;
+import Objects.Product;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
+import java.awt.*;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Optional;
 
 @Route(value = "clientes",layout=MainView.class)
 public class PedidosclienteView extends VerticalLayout {
@@ -44,5 +56,54 @@ public class PedidosclienteView extends VerticalLayout {
 
         tabla.setItems(lista);
         add(tabla);
+
+        tabla.addSelectionListener(selection -> {
+            Optional<Pedidocliente> optional = selection.getFirstSelectedItem();
+            if (optional.isPresent()) {
+
+                Dialog dialog = new Dialog();
+                add(dialog);
+                dialog.open();
+
+                dialog.add(new H3("Editar the Usuario "+(optional.get().getId() ) +":"));
+
+                Button Aceptar = new Button("Aceptar");
+                Aceptar.addClickListener(clickEvent -> {
+
+
+                    try {
+                        generarPDF(optional.get(), "juan.pdf");
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    dialog.close();
+
+                });
+
+                Button Cancelar = new Button("Cancelar");
+                Cancelar.addClickListener(clickEvent -> {
+                    dialog.close();
+
+                });
+
+                HorizontalLayout botones = new HorizontalLayout(Aceptar,Cancelar);
+
+                dialog.add(botones);
+
+
+
+            }
+        });
+
+
+    }
+    public void generarPDF(Pedidocliente pedido, String nombreArchivo) throws Exception {
+        Document document = new Document();
+        PdfWriter.getInstance(document, new FileOutputStream(nombreArchivo));
+        document.open();
+        document.add(new Paragraph("Etiqueta de envio del pedido ID: " + pedido.getId()));
+        document.add(new Paragraph("Username: " + pedido.getUsername()));
+        document.add(new Paragraph("Direccion: " + pedido.getDireccion()));
+        document.close();
     }
 }

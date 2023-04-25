@@ -1,1 +1,1 @@
-[{"username":"petunio","pwd":"contrasena1","rol":"ADMIN","id":0}]
+[{"username":"petunio","pwd":"contrasena1","rol":"Admin","id":0},{"username":"jefe","pwd":"p","rol":"Jefe de obra","id":1},{"username":"operario","pwd":"p","rol":"Operario","id":2}]

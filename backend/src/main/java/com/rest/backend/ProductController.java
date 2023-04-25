@@ -3,8 +3,6 @@ package com.rest.backend;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration;
-import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,7 +16,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @RestController
 @RequestMapping("/products")
@@ -48,7 +45,7 @@ public class ProductController {
     }
 
     @GetMapping("/edit")
-    public Product edit(@RequestParam String id,@RequestParam int stock,@RequestParam float price,@RequestParam String name,@RequestParam String proveedor,@RequestParam String ubicacion,@RequestParam String umbral) throws FileNotFoundException {
+    public Product edit(@RequestParam String id, @RequestParam int stock, @RequestParam int price, @RequestParam String name, @RequestParam String proveedor, @RequestParam String ubicacion, @RequestParam String umbral) throws FileNotFoundException {
         this.loadjson();
         for (int i = 0; i < products.size(); i++){
             if(products.get(i).getId().equals(id)){
@@ -63,7 +60,7 @@ public class ProductController {
     }
 
     @GetMapping("/create")
-    public void create(@RequestParam String id,@RequestParam int stock,@RequestParam float price,@RequestParam String name,@RequestParam String proveedor,@RequestParam String ubicacion,@RequestParam String umbral) throws FileNotFoundException {
+    public void create(@RequestParam String id, @RequestParam int stock, @RequestParam float price, @RequestParam String name, @RequestParam String proveedor, @RequestParam String ubicacion, @RequestParam String umbral) throws FileNotFoundException {
         this.loadjson();
 
         products.add(new Product(id,stock,price,name,proveedor,ubicacion,umbral));

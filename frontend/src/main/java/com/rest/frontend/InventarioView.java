@@ -46,7 +46,8 @@ public class InventarioView extends VerticalLayout {
         //List<Product> lista = gson.fromJson(listajson,new TypeToken<List<Product>>(){}.getType());
 
         Grid<Product> tabla=new Grid<>();
-        Grid.Column<Product> namecol =tabla.addColumn(Product::getName).setHeader("Product name:");
+        Grid.Column<Product> idcol =tabla.addColumn(Product::getId).setHeader("Referencia:");
+        Grid.Column<Product> namecol =tabla.addColumn(Product::getName).setHeader("Nombre comercial:");
         Grid.Column<Product> preciocol =tabla.addColumn(Product::getPrice).setHeader("Precio:");
         Grid.Column<Product> stockcol =tabla.addColumn(Product::getStock).setHeader("Stock:");
         Grid.Column<Product> proveedorcol =tabla.addColumn(Product::getProveedor).setHeader("Proveedor:");

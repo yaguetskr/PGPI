@@ -1,23 +1,15 @@
 package com.rest.frontend;
 
 import Objects.Usuario;
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.*;
-import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.server.VaadinSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.vaadin.flow.theme.Theme;
+import com.vaadin.flow.theme.lumo.Lumo;
 
 /**
  * A sample Vaadin view class.
@@ -31,29 +23,40 @@ import org.springframework.beans.factory.annotation.Autowired;
  * A new instance of this class is created for every new user and every
  * browser tab/window.
  */
+
 @Route
 @PWA(name = "My Application", shortName = "My Application")
 public class MainView extends AppLayout {
 
 
 
-    private final RouterLink tab2;
+    private final RouterLink tablogin;
 
-    private final RouterLink tab3;
+    private final RouterLink tabadmin;
     private  ListItem itemadmin;
+
+    private final RouterLink tabjefe;
+    private  ListItem itemjefe;
+
+    private final RouterLink taboperario;
+    private  ListItem itemoperario;
 
     public MainView() {
 
         H1 title=new H1("Inicio");
         
 
-        this.tab2=new RouterLink("Login",LoginView.class);
-        this.tab3=new RouterLink("Admin",AdminView.class);
-        itemadmin=new ListItem(tab3);
+        this.tablogin =new RouterLink("Login",LoginView.class);
+        this.tabadmin =new RouterLink("Admin",AdminView.class);
+        this.tabjefe =new RouterLink("Jefe de obra",JefeView.class);
+        this.taboperario =new RouterLink("Operario",OperarioView.class);
+        itemadmin=new ListItem(tabadmin);
+        itemjefe=new ListItem(tabjefe);
+        itemoperario=new ListItem(taboperario);
 
         visibilizar();
 
-        final UnorderedList list = new UnorderedList(new ListItem(tab2),itemadmin);
+        final UnorderedList list = new UnorderedList(new ListItem(tablogin),itemadmin,itemjefe,itemoperario);
         final Nav navigation = new Nav(list);
         addToDrawer(navigation);
         setPrimarySection(Section.DRAWER);
@@ -73,7 +76,7 @@ public class MainView extends AppLayout {
 
 
     private RouterLink[] getRouterLinks() {
-        return new RouterLink[] {tab2,tab3};
+        return new RouterLink[] {tablogin, tabadmin};
     }
     public void visibilizar() {
 
@@ -81,13 +84,42 @@ public class MainView extends AppLayout {
             itemadmin.setVisible(false);
 
 
-        }else if( ((Usuario) VaadinSession.getCurrent().getAttribute("user")).getRol().equals("ADMIN")){
+        }else if( ((Usuario) VaadinSession.getCurrent().getAttribute("user")).getRol().equals("Admin")){
             itemadmin.setVisible(true);
 
         }else{
             itemadmin.setVisible(false);
 
         }
+
+
+
+        if( ((Usuario) VaadinSession.getCurrent().getAttribute("user"))==null) {
+            itemjefe.setVisible(false);
+
+
+        }else if( ((Usuario) VaadinSession.getCurrent().getAttribute("user")).getRol().equals("Jefe de obra")){
+            itemjefe.setVisible(true);
+
+        }else{
+            itemjefe.setVisible(false);
+
+        }
+
+        if( ((Usuario) VaadinSession.getCurrent().getAttribute("user"))==null) {
+            itemoperario.setVisible(false);
+
+
+        }else if( ((Usuario) VaadinSession.getCurrent().getAttribute("user")).getRol().equals("Operario")){
+            itemoperario.setVisible(true);
+
+        }else{
+            itemoperario.setVisible(false);
+
+        }
+
+
+
     }
 
 }
