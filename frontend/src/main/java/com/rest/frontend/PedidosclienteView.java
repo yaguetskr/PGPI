@@ -66,14 +66,14 @@ public class PedidosclienteView extends VerticalLayout {
                 add(dialog);
                 dialog.open();
 
-                dialog.add(new H3("Editar the Usuario "+(optional.get().getId() ) +":"));
+                dialog.add(new H3("Generar etiqueta de envio para el pedido "+(optional.get().getId() ) +":"));
 
                 Button Aceptar = new Button("Aceptar");
                 Aceptar.addClickListener(clickEvent -> {
 
 
                     try {
-                        generarPDF(optional.get(), "juan.pdf");
+                        generarPDF(optional.get(), "etiqueta.pdf");
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
