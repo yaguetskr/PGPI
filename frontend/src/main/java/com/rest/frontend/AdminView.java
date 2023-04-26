@@ -55,8 +55,6 @@ public class AdminView extends VerticalLayout {
         Button pickingspendientesBtn = new Button("Pickings por preparar");
         pickingspendientesBtn.addClickListener(e -> UI.getCurrent().navigate("pickingspendientes"));
 
-        Button analyticsBtn = new Button("Analytics");
-        analyticsBtn.addClickListener(e -> UI.getCurrent().navigate("analytics"));
 
         topMenu.add(
                 new RouterLink(inventarioBtn.getText(), InventarioView.class),
@@ -65,8 +63,8 @@ public class AdminView extends VerticalLayout {
                 new RouterLink(clientesBtn.getText(), PedidosclienteView.class),
                 new RouterLink(usuariosBtn.getText(), UsuariosView.class),
                 new RouterLink(pickingListBtn.getText(), PickingListView.class),
-                new RouterLink(pickingspendientesBtn.getText(), PickingspendientesView.class),
-                new RouterLink(analyticsBtn.getText(), AnalyticsView.class)
+                new RouterLink(pickingspendientesBtn.getText(), PickingspendientesView.class)
+
         );
 
         // Configuración de los botones
@@ -76,7 +74,7 @@ public class AdminView extends VerticalLayout {
         configureButton(clientesBtn);
         configureButton(usuariosBtn);
         configureButton(pickingListBtn);
-        configureButton(analyticsBtn);
+
     }
 
     private void configureButton(Button button) {

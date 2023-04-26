@@ -93,6 +93,23 @@ public class PickinglistController {
 
     }
 
+    @GetMapping("/pickinglisto")
+    public void pedidolisto(@RequestParam(value = "id",defaultValue = "-1")String id) throws FileNotFoundException {
+
+        this.loadjson();
+        for (int i = 0; i < Pickinglists.size(); i++) {
+            if (Pickinglists.get(i).getId().equals(id)) {
+                System.out.println(id);
+                Pickinglist temp=Pickinglists.get(i);
+                temp.setEstado("preparado");
+                Pickinglists.set(i,temp);
+                this.savejson();
+
+
+            }
+        }
+
+    }
 
     public void savejson() throws FileNotFoundException {
         Gson gson=new Gson();

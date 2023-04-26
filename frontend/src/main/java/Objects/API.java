@@ -86,7 +86,6 @@ public class API {
         fullUrl = fullUrl.replaceAll(" " ,"%20");
         HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
         HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
-        
         return response.body();
 
     }
@@ -97,7 +96,7 @@ public class API {
         fullUrl = fullUrl.replaceAll(" " ,"%20");
         HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
         HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
-        
+        System.out.println(fullUrl);
 
     }
 
@@ -246,7 +245,15 @@ public class API {
         fullUrl = fullUrl.replaceAll(" " ,"%20");
         HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
         HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
+        System.out.println(fullUrl);
 
+    }
 
+    public void pickinglisto(String id) throws URISyntaxException, IOException, InterruptedException {
+        String fullUrl=String.format(backendUrlPrefix,"/listaspicking/pickinglisto?id="+id);
+        fullUrl = fullUrl.replaceAll(" " ,"%20");
+        HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
+        HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
+        System.out.println(fullUrl);
     }
 }

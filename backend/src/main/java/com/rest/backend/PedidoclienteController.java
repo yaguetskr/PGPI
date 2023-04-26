@@ -63,13 +63,16 @@ public class PedidoclienteController {
         this.loadjson();
         for (int i = 0; i < Pedidoclientes.size(); i++) {
             if (Pedidoclientes.get(i).getId().equals(id)) {
+                System.out.println(id);
                 Pedidocliente temp=Pedidoclientes.get(i);
                 temp.setEstado("preparado");
                 Pedidoclientes.set(i,temp);
-
                 this.savejson();
+
+
             }
         }
+
     }
 
     @GetMapping("/createpedido")

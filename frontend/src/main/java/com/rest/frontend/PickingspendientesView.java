@@ -82,9 +82,26 @@ public class PickingspendientesView extends VerticalLayout {
                     for (Product prod : optional.get().getLista()){
 
                         try {
+                            String listemp = null;
+                            try {
+                                listemp = api.getproduct(prod.getId());
+                            } catch (URISyntaxException e) {
+                                throw new RuntimeException(e);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
 
-                            api.editproduct(String.valueOf(prod.getId()),String.valueOf(prod.getStock()-1),String.valueOf(prod.getPrice()),String.valueOf(prod.getName()),prod.getProveedor(),prod.getUbicacion(),prod.getUmbral());
-                            api.pedidolisto(optional.get().getId());
+
+
+                            Type Productype = new TypeToken<Product>() {
+                            }.getType();
+                            Product temp = gson.fromJson(listemp, Productype);
+                            api.editproduct(String.valueOf(prod.getId()),String.valueOf(temp.getStock()-1),String.valueOf(prod.getPrice()),String.valueOf(prod.getName()),prod.getProveedor(),prod.getUbicacion(),prod.getUmbral());
+
+
+
                         } catch (URISyntaxException e) {
                             throw new RuntimeException(e);
                         } catch (IOException e) {
@@ -94,6 +111,20 @@ public class PickingspendientesView extends VerticalLayout {
                         }
 
                     }
+                    String listatemp;
+                    try {
+                        api.pickinglisto(optional.get().getId());
+                        api.pedidolisto(optional.get().getId());
+                        listatemp = api.getalllistaspickingpendientes();
+                    } catch (URISyntaxException e) {
+                        throw new RuntimeException(e);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    List<Pickinglist> temp = gson.fromJson(listatemp, PickingListType);
+                    tabla.setItems(temp);
                     dialog.close();
 
                 });

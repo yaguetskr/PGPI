@@ -44,34 +44,7 @@ public class LoginView extends VerticalLayout{
 
 
 
-        Button regis = new Button("Registrarse",
-                event ->{
 
-                    try {
-                        if(api.buscarusuario(regname.getValue()) == null) {
-                            if(regpassword.getValue().length()>7) {
-                                try {
-                                    api.crearusuario(regname.getValue(), regpassword.getValue(),"Cliente");
-                                    Notification.show("Usuario creado con exito");
-                                } catch (Exception e) {
-                                    // TODO Auto-generated catch block
-                                    e.printStackTrace();
-                                }
-                            }else {
-                                Notification.show("La contraseña ha de tener al menos 8 carácteres");
-
-                            }
-
-                        }else {
-                            Notification.show("Ya existe una cuenta con este nombre de usuario");
-                        }
-                    } catch (IOException | URISyntaxException | InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-
-
-                });
 
         Button login = new Button("Iniciar sesión",
                 event ->{
@@ -119,7 +92,7 @@ public class LoginView extends VerticalLayout{
 
                 });
 
-        columnLayout.add(regname,regpassword,regis,login);
+        columnLayout.add(regname,regpassword,login);
         add(columnLayout);
 
 

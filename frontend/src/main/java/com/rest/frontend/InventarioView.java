@@ -5,6 +5,7 @@ import Objects.API;
 import Objects.Product;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;

@@ -34,7 +34,7 @@ public class ProductController {
         this.loadjson();
 
         for (Product prod : products){
-            if(prod.getId()==(id)){
+            if(prod.getId().equals(id)){
                 return prod;
             }
 
