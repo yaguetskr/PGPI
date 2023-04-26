@@ -5,12 +5,14 @@ public class Pedidocliente {
     String id;
     String username;
     String direccion;
+    String empresa;
     String estado;
 
-    public Pedidocliente(String id, String username, String direccion, String estado) {
+    public Pedidocliente(String id, String username, String direccion, String empresa, String estado) {
         this.id = id;
         this.username = username;
         this.direccion = direccion;
+        this.empresa = empresa;
         this.estado = estado;
     }
 
@@ -32,6 +34,14 @@ public class Pedidocliente {
 
     public String getDireccion() {
         return direccion;
+    }
+
+    public void setEmpresa(String direccion) {
+        this.empresa = empresa;
+    }
+
+    public String getEmpresa() {
+        return empresa;
     }
 
     public void setDireccion(String direccion) {

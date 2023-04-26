@@ -26,12 +26,16 @@ public class UsuarioController {
     public void delete(@RequestParam(value = "id",defaultValue = "-1")int id) throws FileNotFoundException {
 
         this.loadjson();
+        System.out.println(id);
         for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getId() == (id)) {
+
+            if (users.get(i).getId()==(id)) {
+
                 users.remove(i);
                 this.savejson();
             }
         }
+
     }
 
     @GetMapping("/getall")

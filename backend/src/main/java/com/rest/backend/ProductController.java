@@ -45,7 +45,7 @@ public class ProductController {
     }
 
     @GetMapping("/edit")
-    public Product edit(@RequestParam String id, @RequestParam int stock, @RequestParam int price, @RequestParam String name, @RequestParam String proveedor, @RequestParam String ubicacion, @RequestParam String umbral) throws FileNotFoundException {
+    public Product edit(@RequestParam String id, @RequestParam int stock, @RequestParam float price, @RequestParam String name, @RequestParam String proveedor, @RequestParam String ubicacion, @RequestParam String umbral) throws FileNotFoundException {
         this.loadjson();
         for (int i = 0; i < products.size(); i++){
             if(products.get(i).getId().equals(id)){

@@ -203,7 +203,7 @@ public class UsuariosView extends VerticalLayout {
             layoutdialog.add(new H3("Delete Usuario:"));
 
             Select<Usuario> select = new Select<>();
-            select.setLabel("Usuario ID");
+            select.setLabel("Nombre de usuario:");
             select.setItemLabelGenerator(Usuario::getUsername);
             select.setItems(lista);
             layoutdialog.add(select);

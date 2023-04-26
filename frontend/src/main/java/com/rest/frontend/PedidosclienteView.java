@@ -53,6 +53,7 @@ public class PedidosclienteView extends VerticalLayout {
         Grid.Column<Pedidocliente> namecol = tabla.addColumn(Pedidocliente::getUsername).setHeader("Usuario:");
         Grid.Column<Pedidocliente> dircol = tabla.addColumn(Pedidocliente::getDireccion).setHeader("Dirección:");
         Grid.Column<Pedidocliente> estadocol = tabla.addColumn(Pedidocliente::getEstado).setHeader("Estado del pedido:");
+        Grid.Column<Pedidocliente> empresacol = tabla.addColumn(Pedidocliente::getEmpresa).setHeader("Empresa de reparto:");
 
         tabla.setItems(lista);
         add(tabla);
@@ -104,6 +105,7 @@ public class PedidosclienteView extends VerticalLayout {
         document.add(new Paragraph("Etiqueta de envio del pedido ID: " + pedido.getId()));
         document.add(new Paragraph("Username: " + pedido.getUsername()));
         document.add(new Paragraph("Direccion: " + pedido.getDireccion()));
+        document.add(new Paragraph("Empresa de reparto: " + pedido.getEmpresa()));
         document.close();
     }
 }

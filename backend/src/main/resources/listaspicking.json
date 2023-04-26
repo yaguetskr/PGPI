@@ -1,5 +1,1 @@
-
-
-
-[{"id":"cds","lista":[{"id":"cds","stock":47,"price":456.0,"name":"vcx","proveedor":"gh","ubicacion":"qew","umbral":"3"},{"id":"cds","stock":47,"price":456.0,"name":"vcx","proveedor":"gh","ubicacion":"qew","umbral":"3"}],"estado":"enviado"},
-  {"id":"cds","lista":[{"id":"cds","stock":47,"price":456.0,"name":"vcx","proveedor":"gh","ubicacion":"qew","umbral":"3"},{"id":"cds","stock":47,"price":456.0,"name":"vcx","proveedor":"gh","ubicacion":"qew","umbral":"3"}],"estado":"pendiente"}]
+[{"id":"317","lista":[{"id":"COSMETICO 1","stock":16,"price":0.0,"name":"lo rompes todo","proveedor":"L\u0027OREAL","ubicacion":"NA","umbral":"7"},{"id":"COSMETICO 1","stock":16,"price":0.0,"name":"lo rompes todo","proveedor":"L\u0027OREAL","ubicacion":"NA","umbral":"7"},{"id":"COSMETICO 1","stock":16,"price":0.0,"name":"lo rompes todo","proveedor":"L\u0027OREAL","ubicacion":"NA","umbral":"7"}],"estado":"pendiente"}]

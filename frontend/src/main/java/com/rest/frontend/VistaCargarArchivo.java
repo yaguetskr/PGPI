@@ -35,6 +35,7 @@ public class VistaCargarArchivo extends VerticalLayout {
     public VistaCargarArchivo() throws Exception {
         MemoryBuffer memoryBuffer = new MemoryBuffer();
         singleFileUpload = new Upload(memoryBuffer);
+        singleFileUpload = new Upload(memoryBuffer);
         add(singleFileUpload);
 
         singleFileUpload.addSucceededListener(event -> {
@@ -121,9 +122,7 @@ public class VistaCargarArchivo extends VerticalLayout {
             products.add(new Productotemp(provider, reference, minOrderQty));
         }
 
-        for (Productotemp producto : products) {
-            System.out.println(producto);
-        }
+
 
         return products;
     }

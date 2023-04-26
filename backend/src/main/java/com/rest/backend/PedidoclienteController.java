@@ -57,6 +57,50 @@ public class PedidoclienteController {
             }
         }
     }
+    @GetMapping("/pedidolisto")
+    public void pedidolisto(@RequestParam(value = "id",defaultValue = "-1")String id) throws FileNotFoundException {
+
+        this.loadjson();
+        for (int i = 0; i < Pedidoclientes.size(); i++) {
+            if (Pedidoclientes.get(i).getId().equals(id)) {
+                Pedidocliente temp=Pedidoclientes.get(i);
+                temp.setEstado("preparado");
+                Pedidoclientes.set(i,temp);
+
+                this.savejson();
+            }
+        }
+    }
+
+    @GetMapping("/createpedido")
+    public void create(@RequestParam String id, @RequestParam String username, @RequestParam String direccion, @RequestParam String empresa, @RequestParam String estado) throws FileNotFoundException {
+
+        Pedidocliente pedido = new Pedidocliente(id,username,direccion,empresa,estado);
+
+        System.out.println(pedido.getUsername());
+        this.loadjson();
+
+        System.out.println(Pedidoclientes.size());
+        Pedidoclientes.add(pedido);
+        System.out.println(Pedidoclientes.size());
+        this.savejson();
+
+    }
+
+    @GetMapping("/getPediosUser")
+    public List<Pedidocliente> getUserPedidos(@RequestParam String username){
+
+        List<Pedidocliente> pedidosUser = new ArrayList<Pedidocliente>();
+        this.loadjson();
+
+        for (Pedidocliente prod : Pedidoclientes){
+            if(prod.getUsername().equals(username)){
+                pedidosUser.add(prod);
+            }
+        }
+        return pedidosUser;
+
+    }
 
     @GetMapping("/loadjson")
     public void loadjson(){

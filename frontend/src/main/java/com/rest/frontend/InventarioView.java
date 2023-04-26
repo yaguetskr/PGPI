@@ -241,7 +241,7 @@ public class InventarioView extends VerticalLayout {
 
             Select<Product> select = new Select<>();
             select.setLabel("Product ID");
-            select.setItemLabelGenerator(Product::getName);
+            select.setItemLabelGenerator(Product::getId);
             select.setItems(lista);
             layoutdialog.add(select);
 

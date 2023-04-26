@@ -77,6 +77,26 @@ public class PickingspendientesView extends VerticalLayout {
 
                 tablaprods.setItems(optional.get().getLista());
 
+                Button Completado = new Button("Pedido escaneado");
+                Completado.addClickListener(clickEvent -> {
+                    for (Product prod : optional.get().getLista()){
+
+                        try {
+
+                            api.editproduct(String.valueOf(prod.getId()),String.valueOf(prod.getStock()-1),String.valueOf(prod.getPrice()),String.valueOf(prod.getName()),prod.getProveedor(),prod.getUbicacion(),prod.getUmbral());
+                            api.pedidolisto(optional.get().getId());
+                        } catch (URISyntaxException e) {
+                            throw new RuntimeException(e);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                    }
+                    dialog.close();
+
+                });
 
                 Button Cancelar = new Button("Cancelar");
                 Cancelar.addClickListener(clickEvent -> {
@@ -84,7 +104,7 @@ public class PickingspendientesView extends VerticalLayout {
 
                 });
 
-                HorizontalLayout botones = new HorizontalLayout(Cancelar);
+                HorizontalLayout botones = new HorizontalLayout(Completado,Cancelar);
 
                 dialog.add(tablaprods,botones);
 

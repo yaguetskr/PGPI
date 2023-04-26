@@ -85,7 +85,7 @@ public class PedidosprovView extends VerticalLayout {
 
             Select<Product> select = new Select<>();
             select.setLabel("Producto:");
-            select.setItemLabelGenerator(Product::getName);
+            select.setItemLabelGenerator(Product::getId);
             select.setItems(listaprods);
             layoutdialog.add(select);
 

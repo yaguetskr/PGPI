@@ -34,11 +34,11 @@ public class API {
 
     public void deleteuser(int id) throws URISyntaxException, IOException, InterruptedException {
 
-        String fullUrl=String.format(backendUrlPrefix,"/products/delete?id="+Integer.toString(id));
+        String fullUrl=String.format(backendUrlPrefix,"/users/delete?id="+Integer.toString(id));
         fullUrl = fullUrl.replaceAll(" " ,"%20");
         HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
         HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
-
+        System.out.println(fullUrl);
 
     }
 
@@ -107,7 +107,7 @@ public class API {
         fullUrl = fullUrl.replaceAll(" " ,"%20");
         HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
         HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
-        System.out.println(fullUrl);
+
 
     }
 
@@ -241,5 +241,12 @@ public class API {
     }
 
 
+    public void pedidolisto(String id) throws URISyntaxException, IOException, InterruptedException {
+        String fullUrl=String.format(backendUrlPrefix,"/pedidoclientes/pedidolisto?id="+id);
+        fullUrl = fullUrl.replaceAll(" " ,"%20");
+        HttpRequest request= HttpRequest.newBuilder().uri(new URI(fullUrl)).GET().build();
+        HttpResponse<String> response = HttpClient.newBuilder().build().send(request,HttpResponse.BodyHandlers.ofString());
 
+
+    }
 }
